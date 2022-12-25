@@ -1,22 +1,8 @@
-description '后端项目模板父工程'
-
-//构建Gradle脚本自身需要的资源，可以声明的资源包括依赖项、第三方插件、maven仓库地址等。
-buildscript {
-    ext {
-        springBootVersion = '2.2.1.RELEASE'
-    }
-
-    //设置仓库
-    repositories {
-        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
-        maven { url 'https://repo.spring.io/milestone' }
-        mavenCentral()
-    }
-
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-    }
+plugins {
+    id 'org.springframework.boot' version '2.7.7'
+    id 'io.spring.dependency-management' version '1.1.0'
 }
+description '后端项目模板父工程'
 
 //配置全局, 包括root项目和子项目
 allprojects {
@@ -30,8 +16,19 @@ allprojects {
 
     //设置仓库
     repositories {
-        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
-        maven { url 'https://repo.spring.io/milestone' }
+        maven {
+            url 'https://maven.aliyun.com/repository/public'
+        }
+        maven {
+            url 'https://maven.aliyun.com/repository/spring'
+        }
+        maven {
+            url 'https://maven.aliyun.com/repository/spring-plugin'
+        }
+        maven {
+            url 'https://maven.aliyun.com/repository/gradle-plugin'
+        }
+        mavenLocal()
         mavenCentral()
     }
 
@@ -44,7 +41,6 @@ subprojects {
 
     apply plugin: 'java'
     apply plugin: 'java-library' //api
-    apply plugin: 'io.spring.dependency-management'
 
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
