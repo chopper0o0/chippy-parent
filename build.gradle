@@ -81,8 +81,10 @@ project(':chipppy-manager') {
 
 project(":chippy-common") {
     description("公共模块:存放常用的工具类")
+
     //依赖
     dependencies {
+
 
     }
 }
